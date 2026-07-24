@@ -1,0 +1,2634 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ahmad Juaeni Yunus | Software Developer &amp; Digital Creative</title>
+  <style>
+    :root {
+      --bg: #05070b;
+      --bg-soft: #0d1420;
+      --panel: rgba(15, 22, 34, 0.78);
+      --panel-strong: #101827;
+      --line: rgba(96, 165, 250, 0.22);
+      --text: #f8fbff;
+      --muted: #b4c2d4;
+      --brand: #3b82f6;
+      --brand-soft: #93c5fd;
+      --accent: #60a5fa;
+      --success: #34d399;
+      --danger: #f87171;
+      --shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+      --radius: 22px;
+      --radius-sm: 14px;
+      --max: 1180px;
+      --surface-1: rgba(255, 255, 255, 0.03);
+      --surface-2: rgba(255, 255, 255, 0.04);
+      --surface-3: rgba(255, 255, 255, 0.05);
+      --surface-4: rgba(255, 255, 255, 0.08);
+      --hairline-1: rgba(255, 255, 255, 0.06);
+      --hairline-2: rgba(255, 255, 255, 0.12);
+      --placeholder: #8da2be;
+      --theme-toggle-icon: "🌙";
+      color-scheme: dark;
+    }
+
+    [data-theme="light"] {
+      --bg: #f4f7fc;
+      --bg-soft: #e7edf6;
+      --panel: rgba(255, 255, 255, 0.86);
+      --panel-strong: #ffffff;
+      --line: rgba(37, 99, 235, 0.16);
+      --text: #0b1626;
+      --muted: #55637a;
+      --brand: #2563eb;
+      --brand-soft: #1d4ed8;
+      --accent: #2563eb;
+      --success: #0f9d68;
+      --danger: #dc2626;
+      --shadow: 0 20px 50px rgba(15, 23, 42, 0.10);
+      --surface-1: rgba(15, 23, 42, 0.035);
+      --surface-2: rgba(15, 23, 42, 0.045);
+      --surface-3: rgba(15, 23, 42, 0.05);
+      --surface-4: rgba(15, 23, 42, 0.06);
+      --hairline-1: rgba(15, 23, 42, 0.08);
+      --hairline-2: rgba(15, 23, 42, 0.14);
+      --placeholder: #7c8aa1;
+      color-scheme: light;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(59, 130, 246, 0.24), transparent 34%),
+        radial-gradient(circle at 85% 15%, rgba(147, 197, 253, 0.18), transparent 22%),
+        linear-gradient(180deg, #030508 0%, #070b12 55%, #0a1018 100%);
+      color: var(--text);
+      line-height: 1.6;
+      transition: background 0.35s ease, color 0.35s ease;
+    }
+
+    [data-theme="light"] body {
+      background:
+        radial-gradient(circle at top left, rgba(37, 99, 235, 0.10), transparent 34%),
+        radial-gradient(circle at 85% 15%, rgba(37, 99, 235, 0.08), transparent 22%),
+        linear-gradient(180deg, #f8fafc 0%, #eef2f9 55%, #e7edf6 100%);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(var(--max), calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .section {
+      padding: 72px 0;
+    }
+
+    .section + .section {
+      border-top: 1px solid rgba(147, 197, 253, 0.08);
+    }
+
+    [data-theme="light"] .section + .section {
+      border-top-color: rgba(37, 99, 235, 0.08);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(59, 130, 246, 0.12);
+      border: 1px solid rgba(147, 197, 253, 0.18);
+      color: var(--brand-soft);
+      font-size: 13px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 20px rgba(34, 211, 238, 0.8);
+    }
+
+    .section-heading {
+      max-width: 960px;
+      margin-bottom: 34px;
+    }
+
+    .section-heading h2 {
+      margin: 18px 0 14px;
+      font-size: clamp(30px, 5vw, 54px);
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+    }
+
+    .section-heading p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      backdrop-filter: blur(18px);
+      background: rgba(7, 11, 22, 0.45);
+      border-bottom: 1px solid rgba(96, 165, 250, 0.12);
+      transition: background 0.35s ease, border-color 0.35s ease;
+    }
+
+    [data-theme="light"] .site-header {
+      background: rgba(255, 255, 255, 0.66);
+      border-bottom-color: rgba(37, 99, 235, 0.12);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 78px;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background:
+        linear-gradient(135deg, rgba(37, 99, 235, 0.95), rgba(96, 165, 250, 0.85));
+      color: white;
+      box-shadow: 0 12px 28px rgba(37, 99, 235, 0.32);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus-visible {
+      color: var(--text);
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 999px;
+      border: 1px solid rgba(147, 197, 253, 0.2);
+      background: var(--surface-2);
+      color: var(--text);
+      cursor: pointer;
+      font-size: 18px;
+      transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+    }
+
+    .theme-toggle:hover,
+    .theme-toggle:focus-visible {
+      transform: translateY(-2px);
+      border-color: rgba(59, 130, 246, 0.5);
+    }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 18px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--brand), #1d4ed8);
+      color: #fff;
+      font-weight: 600;
+      box-shadow: 0 14px 30px rgba(29, 78, 216, 0.32);
+    }
+
+    .hero {
+      position: relative;
+      padding: 68px 0 56px;
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 34px;
+      align-items: center;
+    }
+
+    .hero h1 {
+      margin: 22px 0 18px;
+      font-size: clamp(32px, 5vw, 58px);
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      max-width: 640px;
+    }
+
+    .hero p {
+      margin: 0;
+      max-width: 650px;
+      font-size: 19px;
+      color: var(--muted);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 30px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 20px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-weight: 600;
+      transition: 0.25s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--brand), #1d4ed8);
+      color: white;
+      box-shadow: 0 18px 36px rgba(29, 78, 216, 0.28);
+    }
+
+    .btn-secondary {
+      background: var(--surface-1);
+      color: var(--text);
+      border-color: rgba(147, 197, 253, 0.18);
+    }
+
+    [data-theme="light"] .btn-secondary {
+      border-color: rgba(37, 99, 235, 0.2);
+    }
+
+    .btn:hover,
+    .btn:focus-visible {
+      transform: translateY(-2px);
+    }
+
+    .hero-foot {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px 22px;
+      margin-top: 28px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .hero-foot span {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hero-foot span::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--success);
+    }
+
+    .showcase {
+      position: relative;
+      background: linear-gradient(180deg, rgba(17, 24, 45, 0.9), rgba(9, 14, 28, 0.88));
+      border: 1px solid var(--line);
+      border-radius: 32px;
+      padding: 26px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .showcase::before {
+      content: "";
+      position: absolute;
+      inset: -30% auto auto -10%;
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      background: rgba(59, 130, 246, 0.24);
+      filter: blur(40px);
+    }
+
+    .showcase-top {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 26px;
+    }
+
+    .showcase-top strong {
+      font-size: 18px;
+      color: #f8fbff;
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.04);
+      color: #b4c2d4;
+      font-size: 13px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .status::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 16px rgba(34, 211, 238, 0.8);
+    }
+
+    .reel-card {
+      position: relative;
+      min-height: 380px;
+      border-radius: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      overflow: hidden;
+      background:
+        linear-gradient(150deg, rgba(34, 211, 238, 0.08), transparent 30%),
+        linear-gradient(160deg, rgba(59, 130, 246, 0.16), rgba(8, 12, 18, 0.94));
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding: 24px;
+    }
+
+    .reel-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(8, 12, 18, 0.92) 0%, rgba(8, 12, 18, 0.66) 42%, rgba(8, 12, 18, 0.18) 76%, rgba(8, 12, 18, 0.08) 100%),
+        linear-gradient(180deg, rgba(8, 12, 18, 0.08), rgba(8, 12, 18, 0.18));
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .reel-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+      background-size: 36px 36px;
+      mask-image: linear-gradient(180deg, rgba(0,0,0,0.7), transparent 92%);
+      z-index: 0;
+    }
+
+    .reel-top {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .play-button {
+      position: relative;
+      flex-shrink: 0;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.22);
+    }
+
+    .showcase-panel-group {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      gap: 12px;
+    }
+
+    .showcase-panel {
+      padding: 14px 16px;
+      border-radius: 18px;
+      border: 1px solid rgba(147, 197, 253, 0.14);
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.18);
+    }
+
+    .showcase-panel-label {
+      display: block;
+      color: var(--brand-soft);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .showcase-panel-value {
+      display: block;
+      font-size: 16px;
+      line-height: 1.4;
+      letter-spacing: -0.02em;
+      color: #f8fbff;
+    }
+
+    .play-button::before {
+      content: "";
+      border-left: 15px solid white;
+      border-top: 9px solid transparent;
+      border-bottom: 9px solid transparent;
+      margin-left: 3px;
+    }
+
+    .reel-meta {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      gap: 12px;
+      max-width: 340px;
+      margin-top: auto;
+    }
+
+    .reel-kicker {
+      color: var(--brand-soft);
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .reel-meta h3 {
+      margin: 0;
+      font-size: clamp(26px, 3.4vw, 38px);
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+    }
+
+    .reel-meta p {
+      margin: 0;
+      color: #d3daf9;
+      font-size: 15px;
+    }
+
+    .stats {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .stat-card,
+    .info-card,
+    .project-card,
+    .service-card,
+    .contact-card,
+    .tool-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      backdrop-filter: blur(14px);
+      transition: background 0.35s ease, border-color 0.35s ease, transform 0.28s ease;
+    }
+
+    .stat-card {
+      padding: 18px;
+    }
+
+    .stat-card strong {
+      display: block;
+      font-size: 26px;
+      letter-spacing: -0.04em;
+    }
+
+    .stat-card span {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 0.6fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .contact-side-stack {
+      display: grid;
+      gap: 18px;
+      align-content: start;
+    }
+
+    .info-card {
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .profile-card {
+      overflow: hidden;
+    }
+
+    .profile-gallery {
+      display: grid;
+      grid-template-columns: 1.35fr 0.65fr;
+      gap: 16px;
+    }
+
+    .photo-frame {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid rgba(147, 197, 253, 0.14);
+      box-shadow: 0 18px 32px rgba(0, 0, 0, 0.22);
+    }
+
+    .profile-photo-main,
+    .profile-photo-side {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      background: rgba(255, 255, 255, 0.04);
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .photo-frame:hover .profile-photo-main,
+    .photo-frame:hover .profile-photo-side {
+      transform: scale(1.05);
+    }
+
+    .photo-frame--main,
+    .photo-frame--side {
+      height: 320px;
+    }
+
+    .photo-placeholder {
+      display: none;
+      position: absolute;
+      inset: 0;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background:
+        radial-gradient(circle at 30% 20%, rgba(59, 130, 246, 0.28), transparent 60%),
+        linear-gradient(150deg, rgba(29, 78, 216, 0.35), rgba(8, 12, 18, 0.9));
+    }
+
+    .photo-frame--empty .photo-placeholder {
+      display: flex;
+    }
+
+    .photo-frame--empty img {
+      display: none;
+    }
+
+    .photo-placeholder-initials {
+      width: 64px;
+      height: 64px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      color: #f8fbff;
+    }
+
+    .photo-placeholder-label {
+      color: #c7d2e6;
+      font-size: 12px;
+      text-align: center;
+      max-width: 180px;
+      padding: 0 12px;
+    }
+
+    .profile-note {
+      margin-top: 16px;
+      padding: 16px 18px;
+      border-radius: 20px;
+      background: var(--surface-2);
+      border: 1px solid var(--line);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 6px 10px;
+    }
+
+    .profile-note strong {
+      font-size: 16px;
+      letter-spacing: -0.02em;
+      white-space: nowrap;
+    }
+
+    .profile-note span {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .info-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .info-card p + p {
+      margin-top: 16px;
+    }
+
+    .mini-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .mini-card {
+      padding: 18px;
+      border-radius: var(--radius-sm);
+      background: var(--surface-1);
+      border: 1px solid var(--hairline-1);
+      transition: background 0.35s ease, border-color 0.35s ease;
+    }
+
+    .mini-card strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 15px;
+    }
+
+    .mini-card span {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .stack {
+      display: grid;
+      gap: 18px;
+    }
+
+    .stack-item {
+      padding: 22px;
+      border-radius: var(--radius);
+      background: var(--surface-1);
+      border: 1px solid var(--hairline-1);
+      transition: background 0.35s ease, border-color 0.35s ease;
+    }
+
+    .stack-item strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 18px;
+    }
+
+    .stack-item p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+
+    .chip {
+      padding: 10px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(147, 197, 253, 0.18);
+      background: var(--surface-1);
+      color: var(--muted);
+      cursor: pointer;
+      transition: 0.25s ease;
+      font: inherit;
+    }
+
+    [data-theme="light"] .chip {
+      border-color: rgba(37, 99, 235, 0.18);
+    }
+
+    .chip.active,
+    .chip:hover,
+    .chip:focus-visible {
+      color: var(--text);
+      border-color: rgba(59, 130, 246, 0.65);
+      background: rgba(59, 130, 246, 0.16);
+    }
+
+    .projects-grid,
+    .services-grid,
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .project-card,
+    .service-card,
+    .tool-card,
+    .contact-card {
+      padding: 22px;
+      box-shadow: var(--shadow);
+      transition: 0.28s ease;
+    }
+
+    .project-card {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-card:hover,
+    .service-card:hover,
+    .tool-card:hover,
+    .contact-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(59, 130, 246, 0.34);
+    }
+
+    .project-card[hidden] {
+      display: none;
+    }
+
+    .project-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    .project-overlay {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+        padding: 20px;
+        color: #fff;
+        background: linear-gradient(
+            to top,
+            rgba(0,0,0,.7),
+            rgba(0,0,0,.15),
+            transparent
+        );
+    }
+
+    .project-overlay h4 {
+        margin: 0;
+        font-size: 1.1rem;
+    }
+
+    .project-overlay p {
+        margin-top: 4px;
+        font-size: .9rem;
+        opacity: .9;
+    }
+
+    .project-card:hover .project-image {
+        transform: scale(1.05);
+        transition: .4s;
+    }
+
+    .project-media {
+      position: relative;
+      height: 200px;
+      margin-bottom: 18px;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px dashed rgba(147, 197, 253, 0.28);
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 18px;
+    }
+
+    [data-theme="light"] .project-media {
+      border-color: rgba(37, 99, 235, 0.28);
+    }
+
+    .project-media img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+    transition:.45s ease;
+    cursor: zoom-in;
+    }
+
+    .project-card:hover .project-media img{
+        transform:scale(1.08);
+    }
+
+    .project-overlay{
+        position:absolute;
+        inset:0;
+        display:flex;
+        flex-direction:column;
+        justify-content:flex-end;
+        padding:20px;
+        background:linear-gradient(
+            to top,
+            rgba(0,0,0,.8),
+            rgba(0,0,0,.2),
+            transparent
+        );
+        color:#fff;
+    }
+
+    .project-overlay h4{
+        margin:0;
+        font-size:18px;
+    }
+
+    .project-overlay p{
+        margin-top:4px;
+        font-size:14px;
+        opacity:.9;
+    }
+
+    .project-media span {
+      position: relative;
+      z-index: 1;
+      display: block;
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    .project-media small {
+      position: relative;
+      z-index: 1;
+      display: block;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+      max-width: 220px;
+    }
+
+    /* Carousel / slider inside .project-media (used for Bukti cards) */
+    .project-media.carousel {
+      padding: 0;
+      display: block;
+    }
+
+    .carousel-track {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+      touch-action: pan-y;
+    }
+
+    .carousel-slide {
+      flex: 0 0 100%;
+      width: 100%;
+      height: 100%;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 18px;
+      position: relative;
+    }
+
+    .carousel-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      cursor: zoom-in;
+      transition: transform 0.45s ease;
+    }
+
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(8, 12, 18, 0.55);
+      color: #fff;
+      font-size: 13px;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      z-index: 3;
+      backdrop-filter: blur(6px);
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .carousel-btn:hover,
+    .carousel-btn:focus-visible {
+      background: rgba(59, 130, 246, 0.85);
+      transform: translateY(-50%) scale(1.08);
+    }
+
+    .carousel-prev {
+      left: 10px;
+    }
+
+    .carousel-next {
+      right: 10px;
+    }
+
+    .carousel-dots {
+      position: absolute;
+      left: 50%;
+      bottom: 10px;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 6px;
+      z-index: 3;
+    }
+
+    .carousel-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      border: none;
+      padding: 0;
+      background: rgba(255, 255, 255, 0.4);
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .carousel-dot.active {
+      width: 18px;
+      border-radius: 4px;
+      background: #fff;
+    }
+
+    .project-media.carousel[data-count="1"] .carousel-btn,
+    .project-media.carousel[data-count="1"] .carousel-dots {
+      display: none;
+    }
+
+    .project-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: flex-start;
+      margin-bottom: 18px;
+    }
+
+    .project-tag,
+    .tool-badge {
+      display: inline-flex;
+      padding: 7px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      color: var(--brand-soft);
+      background: rgba(59, 130, 246, 0.12);
+      border: 1px solid rgba(147, 197, 253, 0.14);
+    }
+
+    .project-card h3,
+    .service-card h3,
+    .contact-card h3 {
+      margin: 0;
+      font-size: 21px;
+      letter-spacing: -0.03em;
+    }
+
+    .project-card p,
+    .service-card p,
+    .contact-card p,
+    .tool-card p {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .project-meta {
+      margin-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .project-meta span {
+      display: inline-flex;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: var(--surface-2);
+      color: var(--muted);
+      font-size: 12px;
+      border: 1px solid var(--hairline-1);
+    }
+
+    .project-link,
+    .inline-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 18px;
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .project-link::after,
+    .inline-link::after {
+      content: "↗";
+      color: var(--accent);
+      transition: transform 0.2s ease;
+    }
+
+    .project-link:hover::after,
+    .inline-link:hover::after {
+      transform: translate(3px, -3px);
+    }
+
+    .service-card {
+      min-height: 220px;
+    }
+
+    .service-card ul {
+      margin: 16px 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+
+    .service-card li + li {
+      margin-top: 8px;
+    }
+
+    .contact-card a {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .contact-form-card {
+      padding: 26px;
+      box-shadow: var(--shadow);
+    }
+
+    .contact-form-card h3 {
+      margin: 0 0 10px;
+      font-size: 24px;
+      letter-spacing: -0.03em;
+    }
+
+    .contact-form-card p {
+      margin: 0 0 20px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .contact-form {
+      display: grid;
+      gap: 14px;
+    }
+
+    .contact-form label {
+      display: grid;
+      gap: 8px;
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      border: 1px solid rgba(147, 197, 253, 0.18);
+      border-radius: 16px;
+      background: var(--surface-1);
+      color: var(--text);
+      padding: 14px 16px;
+      font: inherit;
+      outline: none;
+      transition: 0.2s ease;
+    }
+
+    [data-theme="light"] .contact-form input,
+    [data-theme="light"] .contact-form textarea {
+      border-color: rgba(37, 99, 235, 0.2);
+    }
+
+    .contact-form input::placeholder,
+    .contact-form textarea::placeholder {
+      color: var(--placeholder);
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      border-color: rgba(59, 130, 246, 0.72);
+      box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.12);
+    }
+
+    .contact-form textarea {
+      min-height: 132px;
+      resize: vertical;
+    }
+
+    .contact-form button {
+      width: 100%;
+      margin-top: 4px;
+    }
+
+    .contact-note {
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .footer {
+      padding: 26px 0 42px;
+      color: var(--muted);
+      font-size: 14px;
+      text-align: center;
+    }
+
+    /* Lightbox for project images */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      background: rgba(3, 5, 10, 0.86);
+      backdrop-filter: blur(8px);
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+
+    .lightbox.is-open {
+      display: flex;
+      opacity: 1;
+    }
+
+    .lightbox-image-wrap {
+      position: relative;
+      max-width: min(92vw, 1100px);
+      max-height: 88vh;
+      transform: scale(0.94);
+      transition: transform 0.28s ease;
+    }
+
+    .lightbox.is-open .lightbox-image-wrap {
+      transform: scale(1);
+    }
+
+    .lightbox-image {
+      display: block;
+      max-width: 100%;
+      max-height: 88vh;
+      border-radius: 18px;
+      box-shadow: 0 40px 100px rgba(0, 0, 0, 0.55);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .lightbox-caption {
+      margin-top: 14px;
+      text-align: center;
+      color: #e7ecf7;
+      font-size: 14px;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: -18px;
+      right: -18px;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      background: rgba(20, 26, 40, 0.92);
+      color: #fff;
+      font-size: 20px;
+      line-height: 1;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .lightbox-close:hover,
+    .lightbox-close:focus-visible {
+      background: rgba(59, 130, 246, 0.85);
+      transform: rotate(90deg);
+    }
+
+    @media (max-width: 640px) {
+      .lightbox-close {
+        top: -50px;
+        right: 0;
+      }
+    }
+
+    /* Toast notifications */
+    .toast-stack {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      left: auto;
+      z-index: 300;
+      display: grid;
+      gap: 12px;
+      width: min(360px, calc(100vw - 32px));
+      pointer-events: none;
+    }
+
+    .toast {
+      pointer-events: auto;
+      position: relative;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 16px 18px;
+      border-radius: 18px;
+      background: var(--panel-strong);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      color: var(--text);
+      transform: translateX(120%);
+      opacity: 0;
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease;
+      overflow: hidden;
+    }
+
+    .toast.is-visible {
+      transform: translateX(0);
+      opacity: 1;
+    }
+
+    .toast.is-leaving {
+      transform: translateX(120%);
+      opacity: 0;
+    }
+
+    .toast-icon {
+      flex-shrink: 0;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: 15px;
+      font-weight: 700;
+      margin-top: 1px;
+    }
+
+    .toast-success .toast-icon {
+      background: rgba(52, 211, 153, 0.16);
+      color: var(--success);
+    }
+
+    .toast-error .toast-icon {
+      background: rgba(248, 113, 113, 0.16);
+      color: var(--danger);
+    }
+
+    .toast-body {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .toast-body strong {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 2px;
+    }
+
+    .toast-body span {
+      display: block;
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .toast-close {
+      background: none;
+      border: none;
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 16px;
+      line-height: 1;
+      padding: 2px;
+      flex-shrink: 0;
+    }
+
+    .toast-progress {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 3px;
+      width: 100%;
+      background: linear-gradient(90deg, var(--brand), var(--accent));
+      transform-origin: left;
+      animation: toast-shrink 4.5s linear forwards;
+    }
+
+    .toast-error .toast-progress {
+      background: linear-gradient(90deg, var(--danger), #fca5a5);
+    }
+
+    @keyframes toast-shrink {
+      from { transform: scaleX(1); }
+      to { transform: scaleX(0); }
+    }
+
+    @keyframes fade-up {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero-grid > * {
+      animation: fade-up 0.7s ease both;
+    }
+
+    .hero-grid > *:nth-child(2) {
+      animation-delay: 0.12s;
+    }
+
+    [data-reveal] {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    [data-reveal].is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero-grid > *,
+      [data-reveal] {
+        animation: none !important;
+        transition: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    }
+
+    @media (max-width: 1080px) {
+      .hero-grid,
+      .about-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .projects-grid,
+      .services-grid,
+      .tools-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .showcase {
+        padding: 20px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .projects-grid,
+      .services-grid,
+      .tools-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .container {
+        width: min(var(--max), calc(100% - 24px));
+      }
+
+      .site-header {
+        position: static;
+      }
+
+      .nav {
+        flex-wrap: wrap;
+        padding: 14px 0;
+      }
+
+      .nav-links {
+        order: 3;
+        width: 100%;
+        justify-content: space-between;
+        gap: 12px;
+        font-size: 14px;
+      }
+
+      .hero {
+        padding-top: 30px;
+      }
+
+      .section {
+        padding: 60px 0;
+      }
+
+      .mini-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .reel-card {
+        min-height: 320px;
+      }
+
+      .profile-gallery {
+        grid-template-columns: 1fr;
+      }
+
+      .photo-frame--main {
+        height: 320px;
+      }
+
+      .photo-frame--side {
+        height: 200px;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .container {
+        width: min(var(--max), calc(100% - 20px));
+      }
+
+      .section {
+        padding: 56px 0;
+      }
+
+      .hero {
+        padding-top: 20px;
+      }
+
+      .brand span:last-child {
+        display: none;
+      }
+
+      .nav-cta {
+        padding: 10px 14px;
+        font-size: 14px;
+      }
+
+      .hero-actions .btn {
+        flex: 1 1 auto;
+      }
+
+      .showcase {
+        padding: 16px;
+      }
+
+      .reel-card {
+        min-height: 260px;
+        padding: 18px;
+      }
+
+      .photo-frame--main {
+        height: 260px;
+      }
+
+      .photo-frame--side {
+        height: 160px;
+      }
+
+      .info-card,
+      .contact-form-card {
+        padding: 20px;
+      }
+
+      .toast-stack {
+        top: 12px;
+        right: 12px;
+        width: calc(100vw - 24px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <nav class="nav-links" aria-label="Navigasi utama">
+        <a href="#about">Tentang Saya</a>
+        <a href="#work">Proyek</a>
+        <a href="#proof">Bukti</a>
+        <a href="#services">Layanan</a>
+      </nav>
+      <div class="nav-right">
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Ganti ke mode terang">
+          <span class="theme-icon" aria-hidden="true">🌙</span>
+        </button>
+        <a href="#contact" class="nav-cta">Ajak Kolaborasi</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="home">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">Software Developer &amp; Digital Creative</span>
+          <h1>Saya membangun produk digital, lalu menghidupkan ceritanya lewat visual.</h1>
+          <p>
+            Saya seorang Software Developer yang juga senang terjun ke dunia video 
+            mulai dari mengambil gambar dengan drone, mengedit, sampai menyusun cerita
+            visual. Dua keahlian ini saya pakai bersamaan supaya produk digital yang saya
+            buat tidak cuma berjalan dengan baik, tapi juga enak dilihat dan mudah diingat.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#work">Lihat Proyek Saya</a>
+          </div>
+          <div class="hero-foot">
+            <span>Web Development</span>
+            <span>Video Production</span>
+            <span>Drone Pilot</span>
+          </div>
+        </div>
+
+        <aside class="showcase" aria-label="Showcase utama">
+          <div class="showcase-top">
+            <strong>Portofolio </strong>
+            <span class="status">Siap untuk freelance maupun full-time</span>
+          </div>
+
+          <div class="reel-card">
+            <div class="showcase-panel-group" aria-hidden="true">
+              <div class="showcase-panel">
+                <span class="showcase-panel-label">Fokus Utama</span>
+                <strong class="showcase-panel-value">Website, tampilan UI, konten visual, dan cerita digital.</strong>
+              </div>
+              <div class="showcase-panel">
+                <span class="showcase-panel-label">Arah Kerja</span>
+                <strong class="showcase-panel-value">Freelance, remote, atau berkolaborasi dengan brand dan tim kreatif.</strong>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-heading" data-reveal>
+          <span class="eyebrow">Tentang Saya</span>
+          <h2>Development dan kreativitas visual bukan dua dunia terpisah, tapi satu identitas yang saling menguatkan.</h2>
+          <p>
+            Dasar keahlian saya ada di software development. Dari situ saya kembangkan minat
+            dan jam terbang di produksi video, sehingga produk yang saya buat tidak hanya
+            berjalan dengan baik, tapi juga tampil lebih hidup saat dipresentasikan ke orang lain.
+          </p>
+        </div>
+
+        <div class="about-grid">
+          <div class="info-card profile-card" data-reveal>
+            <div class="profile-gallery">
+              <div class="photo-frame photo-frame--main">
+                <img class="profile-photo-main" src="assets/foto-white.jpg" alt="Foto Ahmad Juaeni Yunus" loading="lazy" onerror="this.closest('.photo-frame').classList.add('photo-frame--empty')">
+                <div class="photo-placeholder" aria-hidden="true">
+                  <span class="photo-placeholder-initials">AJ</span>
+                  <span class="photo-placeholder-label">Ganti file assets/foto-white.jpg</span>
+                </div>
+              </div>
+              <div class="photo-frame photo-frame--side">
+                <img class="profile-photo-side" src="assets/foto-full.jpg" alt="Foto full body Ahmad Juaeni Yunus" loading="lazy" onerror="this.closest('.photo-frame').classList.add('photo-frame--empty')">
+                <div class="photo-placeholder" aria-hidden="true">
+                  <span class="photo-placeholder-initials">AJ</span>
+                  <span class="photo-placeholder-label">Ganti file assets/foto-full.jpg</span>
+                </div>
+              </div>
+            </div>
+            <div class="profile-note">
+              <strong>Ahmad Juaeni Yunus</strong>
+              <span>Software Developer yang juga senang membuat video mulai dari syuting dengan drone sampai menyusun cerita visual.</span>
+            </div>
+          </div>
+
+          <div class="info-card about-text-card" data-reveal>
+            <p>
+              Saya paling tertarik mengerjakan proyek yang butuh keseimbangan antara
+              memecahkan masalah, tampilan yang enak dilihat, dan pengalaman pengguna yang nyaman.
+            </p>
+            <p>
+              Untuk brand, startup, atau bisnis pribadi, saya bisa bantu dari sisi website,
+              landing page, konten visual, sampai materi promosi yang lebih menarik perhatian.
+            </p>
+
+            <div class="mini-grid">
+              <div class="mini-card">
+                <strong>Cara Kerja Developer</strong>
+                <span>Rapi, sistematis, dan fokus mencari solusi.</span>
+              </div>
+              <div class="mini-card">
+                <strong>Eksekusi Kreatif</strong>
+                <span>Visual, gerak (motion), dan alur cerita yang lebih kuat.</span>
+              </div>
+              <div class="mini-card">
+                <strong>Pola Pikir Hybrid</strong>
+                <span>Menghubungkan fungsi produk dengan cerita visualnya.</span>
+              </div>
+              <div class="mini-card">
+                <strong>Siap Delivery</strong>
+                <span>Siap membantu kebutuhan personal, bisnis, atau agency.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container about-grid">
+        <div class="info-card">
+          <div class="stack">
+            <div class="stack-item">
+              <strong>Pengembangan Software</strong>
+              <p>
+                Website, dashboard, landing page, dan sistem digital yang saya rancang
+                supaya cepat diakses, rapi strukturnya, dan nyaman dipakai.
+              </p>
+            </div>
+            <div class="stack-item">
+              <strong>Produksi &amp; Editing Video</strong>
+              <p>
+                Video untuk kebutuhan branding, promosi, dokumentasi acara, sampai konten
+                yang lebih menarik untuk media sosial.
+              </p>
+            </div>
+            <div class="stack-item">
+              <strong>Drone &amp; Videografi</strong>
+              <p>
+                Pengambilan gambar dari udara untuk properti, acara, perjalanan, maupun
+                konten brand yang butuh sudut pandang berbeda.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-heading" data-reveal>
+          <span class="eyebrow">Nilai Tambah</span>
+          <h2>Kombinasi developer dan creative ini yang membuat saya berbeda dari developer kebanyakan.</h2>
+          <p>
+            Saya bisa membangun produk yang berjalan dengan baik, sekaligus mengemas
+            presentasinya secara visual nilai tambah yang relevan baik untuk recruiter
+            maupun calon klien.
+          </p>
+          <a class="inline-link" href="#services">Lihat layanan yang saya tawarkan</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="work">
+      <div class="container">
+        <div class="section-heading" data-reveal>
+          <span class="eyebrow">Proyek Pilihan</span>
+          <h2>Beberapa proyek riset, magang, dan pengembangan sistem yang pernah saya kerjakan.</h2>
+          <p>
+            Mulai dari riset skripsi tentang deteksi suara palsu buatan AI, analisis data sensus,
+            hingga sistem web yang saya bangun saat magang dan proyek akademik.
+          </p>
+        </div>
+
+        <div class="filter-bar" role="tablist" aria-label="Filter proyek">
+          <button class="chip active" data-filter="all" type="button">Semua</button>
+          <button class="chip" data-filter="software" type="button">Software</button>
+          <button class="chip" data-filter="ai" type="button">AI &amp; Data</button>
+          <button class="chip" data-filter="hybrid" type="button">Hybrid</button>
+        </div>
+
+        <div class="projects-grid" data-reveal>
+          <article class="project-card" data-category="ai">
+            <div class="project-media">
+              <img src="assets/Arsitektur.png" alt="Diagram Indo-AD" class="project-image">
+            </div>
+            <div class="project-top">
+              <span class="project-tag">AI &amp; Data</span>
+              <span class="tool-badge">XLSR-Wav2Vec2 • CNN</span>
+            </div>
+            <h3>Indo-AD: Deteksi Deepfake Audio Berbahasa Indonesia</h3>
+            <p>
+              Riset skripsi yang membangun model untuk mendeteksi suara deepfake suara palsu
+              hasil rekayasa AI berbahasa Indonesia, menggunakan Self-Supervised Learning dan
+              CNN classifier (dua teknik machine learning untuk mengenali pola suara). Riset ini
+              merespons kasus penipuan lewat peniruan suara (voice cloning) yang pernah merugikan
+              korban hingga Rp7,8 triliun.
+            </p>
+            <div class="project-meta">
+              <span>Akurasi 90.5%</span>
+              <span>Self-Supervised Learning</span>
+              <span>Skripsi 2026</span>
+            </div>
+            <a class="project-link" href="#contact">Diskusikan detail proyek</a>
+          </article>
+
+          <article class="project-card" data-category="ai">
+            <div class="project-media">
+              <img src="assets/Sensus.jpg" alt="Data Sensus" class="project-image">
+            </div>
+            <div class="project-top">
+              <span class="project-tag">AI &amp; Data</span>
+              <span class="tool-badge">Python • Data Visualization</span>
+            </div>
+            <h3>Sistem Prediksi Data Sensus Desa Pangalengan</h3>
+            <p>
+              Menganalisis data sensus penduduk Desa Pangalengan untuk memetakan karakteristik
+              demografi dan sosial-ekonomi lewat visualisasi statistik. Hasilnya menemukan
+              hubungan antara tingkat pendidikan, pekerjaan, dan usia. data yang bisa jadi
+              referensi program pembangunan desa.
+            </p>
+            <div class="project-meta">
+              <span>Statistical Visualization</span>
+              <span>Analisis demografi</span>
+              <span>Riset akademik 2025</span>
+            </div>
+            <a class="project-link" href="#contact">Diskusikan detail proyek</a>
+          </article>
+
+          <article class="project-card" data-category="hybrid">
+            <div class="project-media">
+              <img src="assets/Chatbot.JPG" alt="Screenshot aplikasi chatbot" class="project-image">
+            </div>
+            <div class="project-top">
+              <span class="project-tag">Hybrid</span>
+              <span class="tool-badge">Flask • Flutter</span>
+            </div>
+            <h3>Chatbot Konsultasi Seputar Islam</h3>
+            <p>
+              Prototipe chatbot yang menjawab pertanyaan seputar Islam, dilatih dari 25.000
+              data tanya-jawab yang sudah diverifikasi. Menggunakan Reinforcement Learning dan
+              Sentence-Transformers (teknik NLP untuk memahami makna kalimat), dengan backend
+              Flask dan aplikasi mobile di Flutter. Hasil risetnya sudah dipublikasikan di Arxiv.org.
+            </p>
+            <div class="project-meta">
+              <span>87% akurasi semantik</span>
+              <span>Reinforcement Learning</span>
+              <span>Publikasi ilmiah</span>
+            </div>
+            <a class="project-link" href="#contact">Diskusikan detail proyek</a>
+          </article>
+
+          <article class="project-card" data-category="software">
+            <div class="project-media">
+              <img src="assets/Presensi.jpg" alt="Screenshot sistem presensi" class="project-image">
+            </div>
+            <div class="project-top">
+              <span class="project-tag">Software</span>
+              <span class="tool-badge">Web-based System</span>
+            </div>
+            <h3>Sistem Presensi SMK Al-Mumtaz</h3>
+            <p>
+              Sistem presensi digital yang mencatat kehadiran siswa secara otomatis dan langsung
+              mengirim notifikasi ke orang tua lewat WhatsApp. Saya kembangkan sistem ini saat
+              magang sebagai Full Stack Developer di Yayasan Al-Mumtaz Abasi.
+            </p>
+            <div class="project-meta">
+              <span>Notifikasi WhatsApp real-time</span>
+              <span>Tailwind CSS</span>
+              <span>Magang Sep–Nov 2024</span>
+            </div>
+            <a class="project-link" href="#contact">Diskusikan detail proyek</a>
+          </article>
+
+          <article class="project-card" data-category="software">
+            <div class="project-media">
+              <img src="assets/AllFresh.jpg" alt="Screenshot platform AllFresh" class="project-image">
+            </div>
+            <div class="project-top">
+              <span class="project-tag">Software</span>
+              <span class="tool-badge">Laravel</span>
+            </div>
+            <h3>AllFresh Laundry Service Management Platform</h3>
+            <p>
+              Platform web untuk mendigitalkan operasional bisnis laundry: pelacakan pesanan
+              secara real-time, manajemen pelanggan berbasis membership, dan notifikasi status
+              otomatis. Dibangun menggunakan Laravel.
+            </p>
+            <div class="project-meta">
+              <span>Laravel</span>
+              <span>Real-time tracking</span>
+              <span>Mar–Jun 2024</span>
+            </div>
+            <a class="project-link" href="#contact">Diskusikan detail proyek</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="proof">
+      <div class="container">
+        <div class="section-heading" data-reveal>
+          <span class="eyebrow">Bukti &amp; Kredensial</span>
+          <h2>Pengalaman kerja, sertifikasi, publikasi, dan pencapaian yang menunjukkan rekam jejak saya.</h2>
+          <p>
+            Rangkuman riwayat magang, asisten dosen, sertifikasi resmi, publikasi ilmiah, dan
+            pencapaian selama menempuh studi Informatika di UIN Sunan Gunung Djati Bandung.
+          </p>
+        </div>
+
+        <div class="filter-bar" role="tablist" aria-label="Filter bukti">
+          <button class="chip active" data-proof-filter="all" type="button">Semua</button>
+          <button class="chip" data-proof-filter="experience" type="button">Pengalaman</button>
+          <button class="chip" data-proof-filter="certificate" type="button">Sertifikat</button>
+          <button class="chip" data-proof-filter="achievement" type="button">Pencapaian</button>
+          <button class="chip" data-proof-filter="evidence" type="button">Publikasi</button>
+        </div>
+
+        <div class="projects-grid" data-reveal id="proofGrid">
+
+          <article class="project-card" data-proof-category="experience">
+            <div class="project-media carousel" data-carousel>
+              <div class="carousel-track">
+                <div class="carousel-slide">
+                  <img src="assets/bukti/1.jpg" alt="Dokumentasi magang Al-Mumtaz Abasi" class="project-image">
+                </div>
+                <div class="carousel-slide">
+                  <img src="assets/bukti/5.jpg" alt="Dokumentasi magang Al-Mumtaz Abasi" class="project-image">
+                </div>
+                <div class="carousel-slide">
+                  <img src="assets/bukti/2.jpg" alt="Dokumentasi magang Al-Mumtaz Abasi" class="project-image">
+                </div>
+                <div class="carousel-slide">
+                  <img src="assets/bukti/3.jpg" alt="Dokumentasi magang Al-Mumtaz Abasi" class="project-image">
+                </div>
+                <div class="carousel-slide">
+                  <img src="assets/bukti/4.jpg" alt="Dokumentasi magang Al-Mumtaz Abasi" class="project-image">
+                </div>
+              </div>
+              <button class="carousel-btn carousel-prev" type="button" aria-label="Foto sebelumnya">&#10094;</button>
+              <button class="carousel-btn carousel-next" type="button" aria-label="Foto berikutnya">&#10095;</button>
+              <div class="carousel-dots"></div>
+            </div>
+            <div class="project-top">
+              <span class="project-tag">Pengalaman</span>
+              <span class="tool-badge">Magang</span>
+            </div>
+            <h3>Yayasan Al-Mumtaz Abasi</h3>
+            <p>
+              Mengelola desain UI dan slicing web dengan Tailwind CSS, sekaligus merangkap
+              Project Manager yang mengoordinasikan tim lewat Jira. Saya juga menerjemahkan
+              desain grafis menjadi kode fungsional untuk sistem presensi berbasis web ini.
+            </p>
+            <div class="project-meta">
+              <span>Sep – Nov 2024</span>
+              <span>Full Stack Developer</span>
+              <span>Kab. Sukabumi</span>
+            </div>
+            <a class="project-link" href="#contact">Tanya detail pengalaman</a>
+          </article>
+
+          <article class="project-card" data-proof-category="experience">
+            <div class="project-media carousel" data-carousel>
+              <div class="carousel-track">
+                <div class="carousel-slide">
+                  <img src="assets/bukti/Magang2.jpg" alt="Dokumentasi magang" class="project-image">
+                </div>
+              </div>
+              <button class="carousel-btn carousel-prev" type="button" aria-label="Foto sebelumnya">&#10094;</button>
+              <button class="carousel-btn carousel-next" type="button" aria-label="Foto berikutnya">&#10095;</button>
+              <div class="carousel-dots"></div>
+            </div>
+            <div class="project-top">
+              <span class="project-tag">Pengalaman</span>
+              <span class="tool-badge">Magang</span>
+            </div>
+            <h3>PT. Mandala Dhara Nagapasa</h3>
+            <p>
+              Di sini saya mempelajari Git untuk kontrol versi dan dasar-dasar Python,
+              berkoordinasi harian dengan tim, mengerjakan beberapa studi kasus, hingga
+              menyelesaikan satu proyek akhir berskala besar.
+            </p>
+            <div class="project-meta">
+              <span>Feb – Jul 2021</span>
+              <span>Software Development</span>
+              <span>Kota. Jakarta</span>
+            </div>
+            <a class="project-link" href="#contact">Tanya detail pengalaman</a>
+          </article>
+
+          <article class="project-card" data-proof-category="certificate">
+            <div class="project-media carousel" data-carousel>
+              <div class="carousel-track">
+                <div class="carousel-slide">
+                  <img src="assets/bukti/CCNA.jpg" alt="Sertifikat CCNA Cisco" class="project-image">
+                </div>
+              </div>
+              <button class="carousel-btn carousel-prev" type="button" aria-label="Foto sebelumnya">&#10094;</button>
+              <button class="carousel-btn carousel-next" type="button" aria-label="Foto berikutnya">&#10095;</button>
+              <div class="carousel-dots"></div>
+            </div>
+            <div class="project-top">
+              <span class="project-tag">Sertifikat</span>
+              <span class="tool-badge">Cisco</span>
+            </div>
+            <h3>CCNA: Introduction to Networks</h3>
+            <p>
+              Sertifikasi jaringan dasar dari Cisco Networking Academy, mencakup konsep dasar
+              jaringan komputer (networking) dan infrastrukturnya.
+            </p>
+            <div class="project-meta">
+              <span>Cisco</span>
+              <span>Jan 2024</span>
+              <span>Networking</span>
+            </div>
+            <a class="project-link" href="https://www.credly.com/badges/b4832cd2-9366-4416-94fe-86377e980528/public_url">Lihat badge sertifikat</a>
+          </article>
+
+          <article class="project-card" data-proof-category="certificate">
+            <div class="project-media carousel" data-carousel>
+              <div class="carousel-track">
+                <div class="carousel-slide">
+                  <img src="assets/bukti/Oracle1.jpg" alt="Sertifikat Oracle Academy" class="project-image">
+                </div>
+                <div class="carousel-slide">
+                  <img src="assets/bukti/Oracle2.jpg" alt="Sertifikat Oracle Academy" class="project-image">
+                </div>
+              </div>
+              <button class="carousel-btn carousel-prev" type="button" aria-label="Foto sebelumnya">&#10094;</button>
+              <button class="carousel-btn carousel-next" type="button" aria-label="Foto berikutnya">&#10095;</button>
+              <div class="carousel-dots"></div>
+            </div>
+            <div class="project-top">
+              <span class="project-tag">Sertifikat</span>
+              <span class="tool-badge">Oracle</span>
+            </div>
+            <h3>Oracle Academy: Introduction to Databases</h3>
+            <p>
+              Sertifikasi dasar basis data dari Oracle Academy, mencakup konsep fundamental
+              database dan bahasa query SQL.
+            </p>
+            <div class="project-meta">
+              <span>Oracle</span>
+              <span>Sep – Oct 2024</span>
+              <span>Database</span>
+            </div>
+          </article>
+
+          <article class="project-card" data-proof-category="achievement">
+            <div class="project-media carousel" data-carousel>
+              <div class="carousel-track">
+                <div class="carousel-slide">
+                  <img src="assets/bukti/kksi.png" alt="KKSI Tourism Promotion" class="project-image">
+                </div>
+                <div class="carousel-slide">
+                  <img src="assets/bukti/kksi1.jpeg" alt="KKSI Tourism Promotion" class="project-image">
+                </div>
+              </div>
+              <button class="carousel-btn carousel-prev" type="button" aria-label="Foto sebelumnya">&#10094;</button>
+              <button class="carousel-btn carousel-next" type="button" aria-label="Foto berikutnya">&#10095;</button>
+              <div class="carousel-dots"></div>
+            </div>
+            <div class="project-top">
+              <span class="project-tag">Pencapaian</span>
+              <span class="tool-badge">Video Competition</span>
+            </div>
+            <h3>Juara 3 Harapan KKSI Video Tourism Promotion</h3>
+            <p>
+              Meraih Juara 3 Harapan pada kompetisi video promosi pariwisata KKSI hasil dari
+              kemampuan videografi dan editing yang sudah saya asah sejak lama.
+            </p>
+            <div class="project-meta">
+              <span>2021</span>
+              <span>Video Tourism</span>
+              <span>Kompetisi nasional</span>
+            </div>
+            <a class="project-link" href="#contact">Tanya detail pencapaian</a>
+          </article>
+
+          <article class="project-card" data-proof-category="evidence">
+            <div class="project-media carousel" data-carousel>
+              <div class="carousel-track">
+                <div class="carousel-slide">
+                  <img src="assets/Chatbot.JPG" alt="Publikasi" class="project-image">
+                </div>
+              </div>
+              <button class="carousel-btn carousel-prev" type="button" aria-label="Foto sebelumnya">&#10094;</button>
+              <button class="carousel-btn carousel-next" type="button" aria-label="Foto berikutnya">&#10095;</button>
+              <div class="carousel-dots"></div>
+            </div>
+            <div class="project-top">
+              <span class="project-tag">Publikasi</span>
+              <span class="tool-badge">Arxiv.org</span>
+            </div>
+            <h3>Implementing a Sharia Chatbot as a Consultation Medium</h3>
+            <p>
+              Publikasi riset chatbot konsultasi Islam berbasis Reinforcement Learning dan
+              Sentence-Transformers, memproses 25.000 data QA dengan metodologi CRISP-DM, mencapai
+              87% akurasi semantik.
+            </p>
+            <div class="project-meta">
+              <span>Arxiv.org</span>
+              <span>Reinforcement Learning</span>
+              <span>87% akurasi</span>
+            </div>
+            <a class="project-link" href="https://arxiv.org/abs/2512.16644">Lihat detail publikasi</a>
+          </article>
+
+          <article class="project-card" data-proof-category="experience">
+            <div class="project-media carousel" data-carousel>
+              <div class="carousel-track">
+                <div class="carousel-slide">
+                  <img src="assets/bukti/aslab/2.jpg" alt="Aslab" class="project-image">
+                </div>
+                <div class="carousel-slide">
+                  <img src="assets/bukti/aslab/3.jpg" alt="Aslab" class="project-image">
+                </div>
+                <div class="carousel-slide">
+                  <img src="assets/bukti/aslab/4.jpg" alt="Aslab" class="project-image">
+                </div>
+              </div>
+              <button class="carousel-btn carousel-prev" type="button" aria-label="Foto sebelumnya">&#10094;</button>
+              <button class="carousel-btn carousel-next" type="button" aria-label="Foto berikutnya">&#10095;</button>
+              <div class="carousel-dots"></div>
+            </div>
+            <div class="project-top">
+              <span class="project-tag">Pengalaman</span>
+              <span class="tool-badge">Asisten Dosen</span>
+            </div>
+            <h3>Teknik Informatika UIN SGD Bandung</h3>
+            <p>
+              Mengajar konsep pemrograman dasar dan logika algoritma, menyusun materi C
+              programming, memfasilitasi sesi praktikum mingguan, serta mengevaluasi tugas mahasiswa.
+            </p>
+            <div class="project-meta">
+              <span>Sep–Dec 2025</span>
+              <span>Asisten Dosen</span>
+              <span>Kota Bandung</span>
+            </div>
+            <a class="project-link" href="#contact">Tanya detail pengalaman</a>
+          </article>
+
+          <article class="project-card" data-proof-category="certificate">
+            <div class="project-media carousel" data-carousel>
+              <div class="carousel-track">
+                <div class="carousel-slide">
+                  <img src="assets/bukti/EXCEL.jpeg" alt="Sertifikan Microsoft Office Specialist - Excel" class="project-image">
+                </div>
+              </div>
+              <button class="carousel-btn carousel-prev" type="button" aria-label="Foto sebelumnya">&#10094;</button>
+              <button class="carousel-btn carousel-next" type="button" aria-label="Foto berikutnya">&#10095;</button>
+              <div class="carousel-dots"></div>
+            </div>
+            <div class="project-top">
+              <span class="project-tag">Sertifikat</span>
+              <span class="tool-badge">Microsoft</span>
+            </div>
+            <h3>Microsoft Office Specialist - Excel</h3>
+            <p>
+              Sertifikasi kompetensi Microsoft Excel yang saya peroleh dari PTIPD UIN SGD
+              Bandung, bekerja sama dengan Lumina Eka Optima.
+            </p>
+            <div class="project-meta">
+              <span>PTIPD UIN SGD Bandung</span>
+              <span>Dec 2024</span>
+              <span>MOS Excel</span>
+            </div>
+            <a class="project-link" href="#contact">Tanya detail sertifikat</a>
+          </article>
+
+          <article class="project-card" data-proof-category="certificate">
+            <div class="project-media carousel" data-carousel>
+              <div class="carousel-track">
+                <div class="carousel-slide">
+                  <img src="assets/bukti/Toefa.jpg" alt="Sertifikat TOEFA" class="project-image">
+                </div>
+              </div>
+              <button class="carousel-btn carousel-prev" type="button" aria-label="Foto sebelumnya">&#10094;</button>
+              <button class="carousel-btn carousel-next" type="button" aria-label="Foto berikutnya">&#10095;</button>
+              <div class="carousel-dots"></div>
+            </div>
+            <div class="project-top">
+              <span class="project-tag">Sertifikat</span>
+              <span class="tool-badge">TOEFA</span>
+            </div>
+            <h3>Test of English for Academics</h3>
+            <p>
+              Sertifikasi kompetensi TOEFA dari Language Center UIN Sunan Gunung Djati
+              Bandung, yang menilai kemampuan bahasa Inggris untuk keperluan akademik.
+            </p>
+            <div class="project-meta">
+              <span>Language Center UIN SGD Bandung</span>
+              <span>Nov 2024 – Nov 2026</span>
+              <span>TOEFA</span>
+            </div>
+            <a class="project-link" href="#contact">Tanya detail sertifikat</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-heading" data-reveal>
+          <span class="eyebrow">Tools &amp; Skills</span>
+          <h2>Stack teknis dan tools yang saya pakai untuk mengerjakan proyek nyata.</h2>
+          <p>
+            Dikelompokkan sesuai kompetensi utama: pengembangan web, data &amp; API, desain, produksi
+            visual, dan project management.
+          </p>
+        </div>
+
+        <div class="tools-grid" data-reveal>
+          <article class="tool-card">
+            <span class="tool-badge">Full-Stack Development</span>
+            <p>HTML, CSS, JavaScript, PHP, Laravel, Bootstrap, Tailwind CSS, Python, React, Next.js, Node.js, WordPress.</p>
+          </article>
+          <article class="tool-card">
+            <span class="tool-badge">Database &amp; API</span>
+            <p>MySQL, MongoDB, perancangan RESTful API untuk pertukaran data antar sistem.</p>
+          </article>
+          <article class="tool-card">
+            <span class="tool-badge">UI/UX Design</span>
+            <p>Figma, UI research, UX research, kolaborasi desain dengan tim teknis.</p>
+          </article>
+          <article class="tool-card">
+            <span class="tool-badge">Digital Creative</span>
+            <p>Video pre &amp; post production, videography, trimming, slicing, keyframing, drone pilot.</p>
+          </article>
+          <article class="tool-card">
+            <span class="tool-badge">Project Management</span>
+            <p>Jira, Trello, Notion, Google Workspace, metodologi Agile dan Scrum.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="services">
+      <div class="container">
+        <div class="section-heading" data-reveal>
+          <span class="eyebrow">Layanan</span>
+          <h2>Kompetensi yang bisa saya kontribusikan untuk tim atau proyek Anda.</h2>
+          <p>
+            Berbasis pengalaman magang, riset akademik, dan pengembangan sistem yang sudah pernah
+            saya kerjakan secara langsung.
+          </p>
+        </div>
+
+        <div class="services-grid" data-reveal>
+          <article class="service-card">
+            <h3>Web &amp; System Development</h3>
+            <p>Membangun website, dashboard, atau sistem digital dengan Laravel, PHP, React, atau Next.js.</p>
+            <ul>
+              <li>Company profile &amp; landing page</li>
+              <li>Sistem manajemen internal (mis. presensi, laundry)</li>
+              <li>Perancangan RESTful API</li>
+            </ul>
+          </article>
+
+          <article class="service-card">
+            <h3>Data Analysis &amp; Machine Learning</h3>
+            <p>Analisis data dan pengembangan model klasifikasi berbasis riset akademik.</p>
+            <ul>
+              <li>Visualisasi statistik &amp; analisis demografi</li>
+              <li>Model deteksi berbasis CNN / Self-Supervised Learning</li>
+              <li>Dokumentasi riset dan publikasi ilmiah</li>
+            </ul>
+          </article>
+
+          <article class="service-card">
+            <h3>Video Production &amp; Drone Videography</h3>
+            <p>Produksi visual dari pre-production hingga editing, termasuk pengambilan aerial footage.</p>
+            <ul>
+              <li>Video pre &amp; post production</li>
+              <li>Drone pilot &amp; aerial footage</li>
+              <li>Trimming, slicing, dan keyframing</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="section-heading" data-reveal>
+          <span class="eyebrow">Kontak</span>
+          <h2>Siap untuk proyek digital yang butuh sisi teknis dan visual sekaligus.</h2>
+          <p>
+            Isi form di bawah ini dengan nama, email, dan kebutuhan Anda, pesan akan
+            langsung masuk ke email saya dan saya usahakan balas secepatnya.
+          </p>
+        </div>
+
+        <div class="contact-grid" data-reveal>
+          <article class="contact-card contact-form-card">
+            <h3>Form Kontak</h3>
+            <p>Isi form berikut untuk menghubungi saya terkait kerja sama, proyek, atau peluang lainnya.</p>
+
+            <form class="contact-form" id="contactForm" action="https://formsubmit.co/ahmadyunus200@gmail.com" method="POST">
+              <input type="hidden" name="_subject" value="Pesan baru dari portfolio Ahmad Juaeni Yunus">
+              <input type="hidden" name="_captcha" value="false">
+              <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+
+              <label>
+                Nama
+                <input type="text" name="Nama" placeholder="Masukkan nama Anda" required>
+              </label>
+
+              <label>
+                Email
+                <input type="email" name="Gmail" placeholder="nama@email.com" required>
+              </label>
+
+              <label>
+                Keperluan
+                <textarea name="Keperluan" placeholder="Jelaskan kebutuhan atau tujuan Anda menghubungi saya" required></textarea>
+              </label>
+
+              <button class="btn btn-primary" type="submit">Kirim Pesan</button>
+            </form>
+          </article>
+
+          <div class="contact-side-stack">
+            <article class="contact-card">
+              <h3>Email</h3>
+              <p><a href="mailto:ahmadyunus200@gmail.com">ahmadyunus200@gmail.com</a></p>
+            </article>
+            <article class="contact-card">
+              <h3>Social</h3>
+              <p>
+                <a href="https://www.linkedin.com/in/ahmadjuaeni/" target="_blank" rel="noreferrer">LinkedIn</a>
+                •
+                <a href="https://github.com/supersyzenn" target="_blank" rel="noreferrer">GitHub</a>
+              </p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      © 2026 Ahmad Juaeni Yunus - Software Developer &amp; Digital Creative.
+    </div>
+  </footer>
+
+  <!-- Lightbox untuk gambar project -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <div class="lightbox-image-wrap">
+      <button class="lightbox-close" id="lightboxClose" aria-label="Tutup gambar" type="button">&times;</button>
+      <img class="lightbox-image" id="lightboxImage" src="" alt="">
+      <div class="lightbox-caption" id="lightboxCaption"></div>
+    </div>
+  </div>
+
+  <!-- Toast notification stack -->
+  <div class="toast-stack" id="toastStack" aria-live="polite" aria-atomic="true"></div>
+
+  <script>
+    // Reveal on scroll
+    const revealTargets = document.querySelectorAll("[data-reveal]");
+    if ("IntersectionObserver" in window && revealTargets.length) {
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15, rootMargin: "0px 0px -60px 0px" });
+
+      revealTargets.forEach((target) => revealObserver.observe(target));
+    } else {
+      revealTargets.forEach((target) => target.classList.add("is-visible"));
+    }
+
+    // Project filter
+    const projectChips = document.querySelectorAll("[data-filter]");
+    const projects = document.querySelectorAll("[data-category]");
+
+    projectChips.forEach((chip) => {
+      chip.addEventListener("click", () => {
+        const selected = chip.dataset.filter;
+
+        projectChips.forEach((item) => item.classList.remove("active"));
+        chip.classList.add("active");
+
+        projects.forEach((project) => {
+          const category = project.dataset.category;
+          const show = selected === "all" || category === selected;
+          project.hidden = !show;
+        });
+      });
+    });
+
+    // Proof filter
+    const proofChips = document.querySelectorAll("[data-proof-filter]");
+    const proofCards = document.querySelectorAll("[data-proof-category]");
+
+    proofChips.forEach((chip) => {
+      chip.addEventListener("click", () => {
+        const selected = chip.dataset.proofFilter;
+
+        proofChips.forEach((item) => item.classList.remove("active"));
+        chip.classList.add("active");
+
+        proofCards.forEach((card) => {
+          const category = card.dataset.proofCategory;
+          const show = selected === "all" || category === selected;
+          card.hidden = !show;
+        });
+      });
+    });
+
+    /* ---------------- Theme toggle (dark / light) ---------------- */
+    const root = document.documentElement;
+    const themeToggle = document.getElementById("themeToggle");
+    const themeIcon = themeToggle ? themeToggle.querySelector(".theme-icon") : null;
+
+    function applyTheme(theme) {
+      if (theme === "light") {
+        root.setAttribute("data-theme", "light");
+        if (themeIcon) themeIcon.textContent = "☀️";
+        if (themeToggle) themeToggle.setAttribute("aria-label", "Ganti ke mode gelap");
+      } else {
+        root.removeAttribute("data-theme");
+        if (themeIcon) themeIcon.textContent = "🌙";
+        if (themeToggle) themeToggle.setAttribute("aria-label", "Ganti ke mode terang");
+      }
+    }
+
+    // Default: dark mode. Catatan: preferensi tema sengaja tidak disimpan
+    // permanen (tanpa localStorage) supaya artifact ini tetap kompatibel
+    // dengan pratinjau di Claude; saat file ini dihosting sendiri, ini
+    // hanya berarti tema kembali ke default setiap kali halaman dimuat ulang.
+    applyTheme("dark");
+
+    if (themeToggle) {
+      themeToggle.addEventListener("click", () => {
+        const isLight = root.getAttribute("data-theme") === "light";
+        applyTheme(isLight ? "dark" : "light");
+      });
+    }
+
+    /* ---------------- Carousel foto di setiap kartu Bukti ---------------- */
+    function initCarousels() {
+      document.querySelectorAll("[data-carousel]").forEach((carousel) => {
+        const track = carousel.querySelector(".carousel-track");
+        const slides = Array.from(carousel.querySelectorAll(".carousel-slide"));
+        const prevBtn = carousel.querySelector(".carousel-prev");
+        const nextBtn = carousel.querySelector(".carousel-next");
+        const dotsWrap = carousel.querySelector(".carousel-dots");
+        let index = 0;
+
+        carousel.setAttribute("data-count", String(slides.length));
+        if (slides.length <= 1) return;
+
+        dotsWrap.innerHTML = "";
+        const dots = slides.map((_, i) => {
+          const dot = document.createElement("button");
+          dot.type = "button";
+          dot.className = "carousel-dot" + (i === 0 ? " active" : "");
+          dot.setAttribute("aria-label", "Ke foto " + (i + 1));
+          dot.addEventListener("click", () => goTo(i));
+          dotsWrap.appendChild(dot);
+          return dot;
+        });
+
+        function update() {
+          track.style.transform = "translateX(-" + index * 100 + "%)";
+          dots.forEach((dot, i) => dot.classList.toggle("active", i === index));
+        }
+
+        function goTo(i) {
+          index = (i + slides.length) % slides.length;
+          update();
+        }
+
+        if (prevBtn) prevBtn.addEventListener("click", () => goTo(index - 1));
+        if (nextBtn) nextBtn.addEventListener("click", () => goTo(index + 1));
+
+        // Swipe / drag support
+        let startX = 0;
+        let isDragging = false;
+
+        track.addEventListener("pointerdown", (e) => {
+          isDragging = true;
+          startX = e.clientX;
+        });
+        track.addEventListener("pointerup", (e) => {
+          if (!isDragging) return;
+          isDragging = false;
+          const diff = e.clientX - startX;
+          if (Math.abs(diff) > 40) {
+            goTo(diff < 0 ? index + 1 : index - 1);
+          }
+        });
+        track.addEventListener("pointerleave", () => {
+          isDragging = false;
+        });
+
+        update();
+      });
+    }
+
+    initCarousels();
+
+    /* ---------------- Lightbox gambar proyek ---------------- */
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImage = document.getElementById("lightboxImage");
+    const lightboxCaption = document.getElementById("lightboxCaption");
+    const lightboxClose = document.getElementById("lightboxClose");
+    let lastFocusedElement = null;
+
+    function openLightbox(imgEl) {
+      lastFocusedElement = document.activeElement;
+      lightboxImage.src = imgEl.currentSrc || imgEl.src;
+      lightboxImage.alt = imgEl.alt || "";
+      lightboxCaption.textContent = imgEl.alt || "";
+      lightbox.classList.add("is-open");
+      lightbox.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+      lightboxClose.focus();
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove("is-open");
+      lightbox.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+      if (lastFocusedElement && typeof lastFocusedElement.focus === "function") {
+        lastFocusedElement.focus();
+      }
+    }
+
+    document.querySelectorAll(".project-media img").forEach((img) => {
+      img.addEventListener("click", () => openLightbox(img));
+      img.setAttribute("tabindex", "0");
+      img.setAttribute("role", "button");
+      img.setAttribute("aria-label", "Perbesar gambar: " + (img.alt || ""));
+      img.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          openLightbox(img);
+        }
+      });
+    });
+
+    if (lightboxClose) lightboxClose.addEventListener("click", closeLightbox);
+    if (lightbox) {
+      lightbox.addEventListener("click", (e) => {
+        if (e.target === lightbox) closeLightbox();
+      });
+    }
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && lightbox && lightbox.classList.contains("is-open")) {
+        closeLightbox();
+      }
+    });
+
+    /* ---------------- Toast notification ---------------- */
+    const toastStack = document.getElementById("toastStack");
+
+    function showToast(type, title, message) {
+      const toast = document.createElement("div");
+      toast.className = "toast toast-" + type;
+      toast.setAttribute("role", "status");
+
+      const icon = document.createElement("div");
+      icon.className = "toast-icon";
+      icon.textContent = type === "success" ? "✓" : "!";
+
+      const body = document.createElement("div");
+      body.className = "toast-body";
+      const strong = document.createElement("strong");
+      strong.textContent = title;
+      const span = document.createElement("span");
+      span.textContent = message;
+      body.appendChild(strong);
+      body.appendChild(span);
+
+      const closeBtn = document.createElement("button");
+      closeBtn.className = "toast-close";
+      closeBtn.type = "button";
+      closeBtn.setAttribute("aria-label", "Tutup notifikasi");
+      closeBtn.textContent = "×";
+
+      const progress = document.createElement("div");
+      progress.className = "toast-progress";
+
+      toast.appendChild(icon);
+      toast.appendChild(body);
+      toast.appendChild(closeBtn);
+      toast.appendChild(progress);
+      toastStack.appendChild(toast);
+
+      requestAnimationFrame(() => toast.classList.add("is-visible"));
+
+      let dismissTimer = setTimeout(() => dismissToast(toast), 4500);
+
+      function dismissToast(el) {
+        clearTimeout(dismissTimer);
+        el.classList.add("is-leaving");
+        el.classList.remove("is-visible");
+        setTimeout(() => el.remove(), 400);
+      }
+
+      closeBtn.addEventListener("click", () => dismissToast(toast));
+    }
+
+    /* ---------------- Contact form submit ---------------- */
+    const contactForm = document.getElementById("contactForm");
+
+    if (contactForm) {
+      contactForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const submitBtn = contactForm.querySelector("button[type='submit']");
+        const originalText = submitBtn.textContent;
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Mengirim...";
+
+        try {
+          const formData = new FormData(contactForm);
+          const response = await fetch(
+            "https://formsubmit.co/ajax/ahmadyunus200@gmail.com",
+            {
+              method: "POST",
+              headers: { Accept: "application/json" },
+              body: formData,
+            }
+          );
+
+          if (response.ok) {
+            showToast("success", "Pesan terkirim", "Terima kasih, pesan Anda sudah saya terima dan akan segera dibalas.");
+            contactForm.reset();
+          } else {
+            showToast("error", "Gagal mengirim", "Silakan coba lagi atau hubungi lewat email langsung.");
+          }
+        } catch (error) {
+          showToast("error", "Kesalahan jaringan", "Terjadi kesalahan jaringan. Coba lagi atau hubungi lewat email.");
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalText;
+        }
+      });
+    }
+  </script>
+</body>
+</html>
